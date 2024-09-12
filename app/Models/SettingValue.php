@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SettingValue extends Model
 {
-    use SoftDeletes;
-
     protected $table = 'setting_values';
     protected $fillable = [
         'connection_uuid',
