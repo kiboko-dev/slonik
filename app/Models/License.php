@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class License extends Model
 {
-    use SoftDeletes, HasUuids;
+    use SoftDeletes;
+    use HasUuids;
 
     protected $table = 'licenses';
 

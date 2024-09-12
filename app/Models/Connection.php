@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Connection extends Model
 {
-    use SoftDeletes, HasUuids;
+    use SoftDeletes;
+    use HasUuids;
 
     protected $table = 'connections';
 

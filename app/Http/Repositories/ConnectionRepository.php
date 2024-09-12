@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Repositories;
+
 use App\Exceptions\IncorrectConnectionException;
 use App\Models\Connection;
 
@@ -10,7 +12,7 @@ class ConnectionRepository
         return Connection::whereLicense($license)->count();
     }
 
-    public function create(string $license, string $ip)
+    public function create(string $license, ?string $ip = '127.0.0.1')
     {
         return Connection::create([
             'license' => $license,

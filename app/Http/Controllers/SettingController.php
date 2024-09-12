@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\GetSettingsRequest;
-use app\Services\SettingsService;
+use App\Http\Services\SettingsService;
 use Illuminate\Http\JsonResponse;
 use Knuckles\Scribe\Attributes as SA;
 use Symfony\Component\HttpFoundation\Response;
-
 
 #[
     SA\Group('Настройки')

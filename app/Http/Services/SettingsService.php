@@ -1,8 +1,8 @@
 <?php
 
-namespace app\Services;
+namespace App\Http\Services;
 
-use SettingsRepository;
+use App\Http\Repositories\SettingsRepository;
 
 class SettingsService
 {

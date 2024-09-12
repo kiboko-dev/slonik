@@ -1,11 +1,11 @@
 <?php
 
-namespace app\Services;
+namespace App\Http\Services;
 
 use App\Exceptions\ConnectionLimitException;
 use App\Exceptions\IncorrectConnectionException;
-use ConnectionRepository;
-use LicenseRepository;
+use App\Http\Repositories\ConnectionRepository;
+use App\Http\Repositories\LicenseRepository;
 
 class LicenseService
 {

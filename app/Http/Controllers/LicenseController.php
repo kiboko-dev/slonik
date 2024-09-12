@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ConnectRequest;
-use app\Services\LicenseService;
+use App\Http\Services\LicenseService;
 use Illuminate\Http\JsonResponse;
 use Knuckles\Scribe\Attributes as SA;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ class LicenseController extends Controller
     #[
         SA\Endpoint(
             title: 'Подключиться',
-            description: 'Выполняется подключение. Если UUID подключения создаётся новое подключение, 
+            description: 'Выполняется подключение. Если UUID подключения создаётся новое подключение,
                           если не исчерпан лимит подключений заданный в лицензии.'
         ),
         SA\Response(content: '', status: Response::HTTP_OK, description: 'OK'),
