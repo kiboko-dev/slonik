@@ -17,6 +17,8 @@ class LicenseResource extends ModelResource
 
     protected string $title = 'Лицензии';
 
+//    protected string $column = 'client_name';
+
     public function fields(): array
     {
         return [

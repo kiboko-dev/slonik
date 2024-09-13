@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\MoonShine\Resources\ConnectionResource;
 use App\MoonShine\Resources\LicenseResource;
+use App\MoonShine\Resources\SettingResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
 use MoonShine\Menu\MenuItem;
 
@@ -17,7 +19,9 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
 
     protected function resources(): array
     {
-        return [];
+        return [
+            new LicenseResource()
+        ];
     }
 
     protected function pages(): array
@@ -29,6 +33,8 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
     {
         return [
             MenuItem::make('Лицензии', new LicenseResource()),
+            MenuItem::make('Дефолтные настройки', new SettingResource()),
+            MenuItem::make('Соедиения', new ConnectionResource()),
 
             /**
             MenuGroup::make(static fn() => __('moonshine::ui.resource.system'), [

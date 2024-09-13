@@ -19,8 +19,8 @@ class Connection extends Model
         'ip'
     ];
 
-    public function license(): BelongsTo
+    public function relatedLicense(): BelongsTo
     {
-        return $this->belongsTo(License::class);
+        return $this->belongsTo(License::class,'license');
     }
 }
