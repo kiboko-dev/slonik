@@ -2,7 +2,11 @@
 
 namespace App\Http\Services;
 
+use App\Enums\FieldType;
 use App\Http\Repositories\SettingsRepository;
+use App\Http\Resources\SettingsResource;
+use App\Models\Setting;
+use Database\Seeders\SettingsSeeder;
 
 class SettingsService
 {
@@ -10,14 +14,15 @@ class SettingsService
     {
     }
 
-    public function getByConnectionUuid(string $connectionUuid): array
+    public function getByConnectionUuid(string $connectionUuid): SettingsResource
     {
-        $settings = $this->settingsRepository->getByConnection($connectionUuid);
+        return SettingsResource::make($this->settingsRepository->getByConnection($connectionUuid));
+    }
 
-        if (count($settings) === 0) {
-            $settings = $this->settingsRepository->getDefaultSettings();
-        }
+    public static function getSettingFieldByKey(string $key)
+    {
+        $setting = Setting::whereKey($key)->firstOrFail();
 
-        return $settings;
+        return FieldType::getField($setting->field_type, $setting->name, '', $setting->values);
     }
 }

@@ -2,9 +2,11 @@
 
 namespace App\MoonShine\Resources;
 
+use App\Enums\FieldType;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Setting;
 
+use MoonShine\Fields\Select;
 use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
 use MoonShine\Decorations\Block;
@@ -28,7 +30,11 @@ class SettingResource extends ModelResource
                 ID::make()->sortable(),
                 Text::make('Название', 'name')->sortable(),
                 Text::make('Ключ', 'key')->sortable(),
-                Text::make('Значение', 'default_value')->sortable()
+                Select::make('Тип поля', 'field_type')->options(
+                    FieldType::getOptions()
+                ),
+                Text::make('Значение по-умолчанию', 'default_value')->sortable(),
+                Text::make('Маска', 'mask')->sortable(),
             ]),
         ];
     }

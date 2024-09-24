@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\LicenseController;
+use App\Http\Controllers\ConnectionController;
 use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
@@ -8,4 +8,4 @@ use Illuminate\Support\Facades\Route;
 Route::post('/settings', [SettingController::class, 'getByConnection']);
 
 // Проверка лицензии и подключение
-Route::post('/connect', [LicenseController::class, 'connect']);
+Route::post('/connect', [ConnectionController::class, 'connect']);

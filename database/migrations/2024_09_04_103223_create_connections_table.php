@@ -9,11 +9,12 @@ return new class () extends Migration {
     {
         Schema::create('connections', function (Blueprint $table) {
             $table->uuid('id');
-            $table->foreignUuid('license')
-                ->references('id')
-                ->on('licenses')
-                ->onDelete('cascade');
-            $table->ipAddress('ip')->nullable();
+            $table->timestamp('last_connection')->default(now());
+            $table->unsignedInteger('threads_count')->default(1);
+            $table->string('thread_resolution')->default('1080p');
+            $table->unsignedInteger('thread_framerate')->default(25);
+            $table->boolean('highlight_active_tread')->default(true);
+            $table->boolean('highlight_mouse_pointer_area')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

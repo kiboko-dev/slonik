@@ -14,7 +14,13 @@ class Setting extends Model
     protected $fillable = [
         'key',
         'name',
-        'default_value'
+        'default_value',
+        'type',
+        'values'
+    ];
+
+    protected $casts = [
+        'values' => 'array'
     ];
 
     public function values(): HasMany

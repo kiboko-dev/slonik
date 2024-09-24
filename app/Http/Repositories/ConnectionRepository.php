@@ -7,16 +7,15 @@ use App\Models\Connection;
 
 class ConnectionRepository
 {
-    public function getCountByLicense(string $license): int
+    public function getCount(): int
     {
-        return Connection::whereLicense($license)->count();
+        return Connection::all()->count();
     }
 
-    public function create(string $license, ?string $ip = '127.0.0.1')
+    public function create()
     {
         return Connection::create([
-            'license' => $license,
-            'ip' => $ip,
+            'settings' => config('slonik.settings')
         ]);
     }
 
@@ -27,12 +26,19 @@ class ConnectionRepository
         ]);
     }
 
+    public function updateGetLastSettings(string $uuid)
+    {
+        return Connection::find($uuid)->update([
+            'last_connection' => now(),
+        ]);
+    }
+
     /**
      * @throws IncorrectConnectionException
      */
-    public function check(string $uuid, string $ip): void
+    public function check(string $uuid): void
     {
-        if (!Connection::whereId($uuid)->whereIp($ip)->exists()) {
+        if (!Connection::whereId($uuid)->exists()) {
             throw new IncorrectConnectionException();
         }
     }

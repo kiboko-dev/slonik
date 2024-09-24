@@ -3,6 +3,7 @@
 namespace App\Http\Repositories;
 
 use App\Exceptions\NoDefaultSettingsException;
+use App\Models\Connection;
 use App\Models\Setting;
 use App\Models\SettingValue;
 
@@ -22,8 +23,14 @@ class SettingsRepository
         return $settings;
     }
 
-    public function getByConnection(string $connection): ?array
+    public function getByConnection(string $connectionUuid): ?Connection
     {
-        return SettingValue::whereConnectionUuid($connection)->pluck('value', 'key')->toArray();
+        return Connection::findOrFail($connectionUuid);
+
+    }
+
+    public static function getFields()
+    {
+        return Setting::all();
     }
 }

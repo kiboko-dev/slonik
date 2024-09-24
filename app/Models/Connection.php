@@ -15,12 +15,15 @@ class Connection extends Model
     protected $table = 'connections';
 
     protected $fillable = [
-        'license',
-        'ip'
+        'last_connection',
+        'threads_count',
+        'thread_resolution',
+        'thread_framerate',
+        'highlight_active_tread',
+        'highlight_mouse_pointer_area'
     ];
 
-    public function relatedLicense(): BelongsTo
-    {
-        return $this->belongsTo(License::class,'license');
-    }
+    protected $casts = [
+        'last_connection' => 'datetime',
+    ];
 }

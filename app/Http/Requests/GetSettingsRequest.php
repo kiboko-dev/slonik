@@ -16,7 +16,7 @@ class GetSettingsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'connectionUuid'   =>  ['required', 'uuid', 'exists:connections,id']
+            'connectionUuid'   =>  ['required', 'uuid']
         ];
     }
 }
