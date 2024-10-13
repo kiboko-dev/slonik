@@ -15,8 +15,22 @@ class ConnectRequest extends FormRequest
 
     public function rules(): array
     {
-        return [
+        $rules = [
             'connection' => ['uuid', 'exists:connections,id'],
+        ];
+        if (config('slonik.check_license')) {
+            $rules['license'] = ['required', 'string'];
+        }
+
+        return $rules;
+    }
+
+    public function messages(): array
+    {
+        return [
+          'license.required' => 'Необходимо указать лицензию',
+          'connection.exists' => 'Такого подключения не существует',
+          'connection.uuid' => 'Неверный формат ID подключения',
         ];
     }
 }

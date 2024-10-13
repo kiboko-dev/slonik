@@ -22,8 +22,11 @@ class ConnectionResource extends ModelResource
 {
     protected string $model = Connection::class;
 
-    protected string $title = 'Соединения';
+    protected function onBoot(): void
+    {
+        $this->formPage()->setTitle(__('slonik.connections_title'));
 
+    }
 
     public function getActiveActions(): array
     {
@@ -42,22 +45,22 @@ class ConnectionResource extends ModelResource
         }
         return [
                 ID::make()->sortable(),
-                Date::make('Настройки получены','last_connection')->sortable()->readonly()->hideOnUpdate(),
-                Block::make('Настройки',[
-                    Number::make('Количество потоков', 'threads_count')->max(64)->step(1)->hideOnIndex(),
-                    Select::make('Разрешение', 'thread_resolution')->options([
+                Date::make(__('slonik.last_connection'),'last_connection')->sortable()->readonly()->hideOnUpdate(),
+                Block::make(__('slonik.settings.title'),[
+                    Number::make(__('slonik.settings.threads_count'), 'threads_count')->max(64)->step(1)->hideOnIndex(),
+                    Select::make(__('slonik.settings.resolution'), 'thread_resolution')->options([
                         '480p' => '480p',
                         '720p' => '720p',
                         '1080p' => '1080p',
                         ])->hideOnIndex(),
-                    Select::make('Частота кадров', 'thread_framerate')->options([
+                    Select::make(__('slonik.settings.thread_framerate'), 'thread_framerate')->options([
                         10 => 10,
                         15 => 15,
                         25 => 25,
                         30 => 30
                     ])->hideOnIndex(),
-                    Switcher::make('Подсветка активного монитора', 'highlight_active_tread')->hideOnIndex(),
-                    Switcher::make('Подсветка зоны указателя мыши', 'highlight_mouse_pointer_area')->hideOnIndex(),
+                    Switcher::make(__('slonik.settings.highlight_active_tread'), 'highlight_active_tread')->hideOnIndex(),
+                    Switcher::make(__('slonik.settings.highlight_mouse_pointer_area'), 'highlight_mouse_pointer_area')->hideOnIndex(),
                 ]),
         ];
     }
@@ -65,5 +68,11 @@ class ConnectionResource extends ModelResource
     public function rules(Model $item): array
     {
         return [];
+    }
+
+    public function getTitle(): ConnectionResource
+    {
+        $this->title = __('auth.failed');
+        return $this;
     }
 }

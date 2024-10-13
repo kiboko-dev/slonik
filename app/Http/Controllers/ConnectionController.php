@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ConnectRequest;
 use App\Http\Services\ConnectionService;
+use App\Http\Services\LicenseService;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Knuckles\Scribe\Attributes as SA;
@@ -27,6 +28,14 @@ class ConnectionController extends Controller
     {
         return response()->json(
             $service->connect($request->validated('connection'))
+        );
+    }
+
+    public function test(): JsonResponse
+    {
+        $jwt = request()->input('license');
+        return response()->json(
+            LicenseService::checkAvailableNewThread($jwt, 5)
         );
     }
 }

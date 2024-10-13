@@ -9,4 +9,6 @@ return [
         'highlightActiveTread' => true,
         'highlightMousePointerArea' => true,
     ],
+    'jwt_key' => 'X4Ma8mAwZDcTodT6',
+    'check_license' =>  false,
 ];

@@ -9,3 +9,4 @@ Route::post('/settings', [SettingController::class, 'getByConnection']);
 
 // Проверка лицензии и подключение
 Route::post('/connect', [ConnectionController::class, 'connect']);
+Route::post('/test', [ConnectionController::class, 'test']);

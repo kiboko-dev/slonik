@@ -31,7 +31,8 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
     protected function menu(): array
     {
         return [
-            MenuItem::make('Соединения', new ConnectionResource()),
+            MenuItem::make('slonik.connections_title', new ConnectionResource())
+                ->translatable(),
         ];
     }
 
